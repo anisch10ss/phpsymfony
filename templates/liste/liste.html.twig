@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+<tr>
+<th>Reference</th>
+<th>Titre</th>
+<th>Description</th>
+<th>Date Debut</th>
+<th>Date fin</th>
+<th>Nb Participants</th>
+</tr>
+{% set nbCases=0%}
+{% for f in formation  %}
+<tr>
+  <!--  {% if 'theorique' in f.Description %} -->
+  {%nbCases=nbCases+1%}
+    <td>{{f.ref}}</td>
+    <td>{{f.Titre}}</td>
+    <td>{{f.Description}}</td>
+    <td>{{f.date_debut}}</td> 
+    <td>{{f.date_fin}}</td>
+    <td>{{f.nb_participants}}</td>
+<!-- {% endif %} 
+ -->
+</tr>
+{% endfor %}
+{%if nbCases<=0%}
+<p>Le tableau est vide ou n'est pas défini</p>
+{%else%}
+<p>la taille d'un tableau est : {{nbCases}}</p>
+</table>
+    {% set nbTot=0%}
+    {%for f in formation%}
+    {%set nbTot=nbTot+f.nb_participants%}
+    {% endfor %}
+    <p>le nombre total des Participants est : {{nbTot}}</p>
+</body>
+</html>
